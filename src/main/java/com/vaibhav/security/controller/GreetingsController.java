@@ -10,7 +10,7 @@ public class GreetingsController {
 
     @GetMapping("/hello")
     public String greetings(){
-        log.info("Login Success| Hitting Hello endpoint");
+        log.info("Login Success | Hitting Hello endpoint");
         return "Hello! Greetings from Spring Security";
     }
 }
