@@ -5,6 +5,9 @@ spring:
     user:
       name: user
       password: user123
+  app:
+    jwtSecret: IshAum$2025
+    jwtExpirationMs: 300000
   jpa:
     hibernate:
       ddl-auto: update
