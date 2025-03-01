@@ -10,6 +10,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -35,12 +37,17 @@ public class MySecurityConfiguration {
     }
 
     @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
     public UserDetailsService userDetailsService(){
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
         if(!jdbcUserDetailsManager.userExists("admin")) {
             UserDetails admin = User.withUsername("admin")
-                    .password("{noop}admin")
+                    .password(passwordEncoder().encode("admin"))
                     .roles("ADMIN")
                     .build();
 
@@ -49,7 +56,7 @@ public class MySecurityConfiguration {
 
         if(!jdbcUserDetailsManager.userExists("readonly")) {
             UserDetails readonly = User.withUsername("readonly")
-                    .password("{noop}readonly")
+                    .password(passwordEncoder().encode("readonly"))
                     .roles("READONLY")
                     .build();
 
