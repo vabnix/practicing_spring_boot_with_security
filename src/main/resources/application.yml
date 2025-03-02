@@ -6,7 +6,7 @@ spring:
       name: user
       password: user123
   app:
-    jwtSecret: IshAum$2025
+    jwtSecret: c2VjdXJpdHlTZWNyZXRLZXlUaGF0SXNBdExlYXN0MzJCeXRlc0xvbmdGb3JIUzI1NkFsZ29yaXRobQ==
     jwtExpirationMs: 300000
   jpa:
     hibernate:
