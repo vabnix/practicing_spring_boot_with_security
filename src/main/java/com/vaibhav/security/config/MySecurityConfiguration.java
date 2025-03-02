@@ -44,7 +44,7 @@ public class MySecurityConfiguration {
         httpSecurity.authorizeHttpRequests(
                 (request)
                         ->request
-                        .requestMatchers("/api/signin").permitAll()
+                        .requestMatchers("/auth/signin").permitAll()
                         .anyRequest().authenticated());
         httpSecurity.sessionManagement(session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
